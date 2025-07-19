@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Authentication Demo - Features</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .demo-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .demo-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        .demo-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-card {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border-left: 4px solid #667eea;
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .endpoint-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .endpoint-list li {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .method {
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .path {
+            font-family: 'Courier New', monospace;
+            color: #333;
+        }
+        
+        .description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .cta-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cta-btn.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .cta-btn.secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="demo-container">
+            <div class="demo-header">
+                <h1>🔐 JWT Authentication Demo</h1>
+                <p>A complete authentication system with beautiful UI and secure token-based authentication</p>
+            </div>
+
+            <div class="demo-section">
+                <h2><i class="fas fa-star"></i> Key Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3><i class="fas fa-shield-alt"></i> Secure Authentication</h3>
+                        <p>JWT-based authentication with secure token handling, password hashing, and input validation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fas fa-palette"></i> Beautiful UI</h3>
+                        <p>Modern, responsive design with smooth animations, glassmorphism effects, and intuitive user experience.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fas fa-mobile-alt"></i> Responsive Design</h3>
+                        <p>Fully responsive interface that works perfectly on desktop, tablet, and mobile devices.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fas fa-code"></i> RESTful API</h3>
+                        <p>Clean REST API with proper error handling, validation, and comprehensive documentation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fas fa-bell"></i> Real-time Feedback</h3>
+                        <p>Toast notifications, loading states, and real-time password strength indicators.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fas fa-dashboard"></i> Dashboard</h3>
+                        <p>Personalized dashboard with user stats, recent activity, and settings management.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-section">
+                <h2><i class="fas fa-code"></i> API Endpoints</h2>
+                <ul class="endpoint-list">
+                    <li>
+                        <div class="method">POST</div>
+                        <div class="path">/api/auth/register</div>
+                        <div class="description">Register a new user account</div>
+                    </li>
+                    <li>
+                        <div class="method">POST</div>
+                        <div class="path">/api/auth/login</div>
+                        <div class="description">Authenticate user and get JWT token</div>
+                    </li>
+                    <li>
+                        <div class="method">POST</div>
+                        <div class="path">/api/auth/refresh</div>
+                        <div class="description">Refresh expired JWT token</div>
+                    </li>
+                    <li>
+                        <div class="method">GET</div>
+                        <div class="path">/api/protected/profile</div>
+                        <div class="description">Get user profile (requires authentication)</div>
+                    </li>
+                    <li>
+                        <div class="method">GET</div>
+                        <div class="path">/api/protected/dashboard</div>
+                        <div class="description">Get user dashboard data (requires authentication)</div>
+                    </li>
+                    <li>
+                        <div class="method">POST</div>
+                        <div class="path">/api/protected/logout</div>
+                        <div class="description">Logout user (requires authentication)</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="demo-section">
+                <h2><i class="fas fa-terminal"></i> Example Usage</h2>
+                
+                <h3>Register a new user:</h3>
+                <div class="code-block">
+curl -X POST http://localhost:3000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "john_doe",
+    "email": "john@example.com",
+    "password": "password123"
+  }'
+                </div>
+
+                <h3>Login and get token:</h3>
+                <div class="code-block">
+curl -X POST http://localhost:3000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john@example.com",
+    "password": "password123"
+  }'
+                </div>
+
+                <h3>Access protected route:</h3>
+                <div class="code-block">
+curl -X GET http://localhost:3000/api/protected/profile \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN_HERE"
+                </div>
+            </div>
+
+            <div class="demo-section">
+                <h2><i class="fas fa-cogs"></i> Technical Stack</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3><i class="fab fa-node-js"></i> Backend</h3>
+                        <ul>
+                            <li>Node.js & Express.js</li>
+                            <li>JWT for authentication</li>
+                            <li>bcryptjs for password hashing</li>
+                            <li>express-validator for input validation</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fab fa-html5"></i> Frontend</h3>
+                        <ul>
+                            <li>Vanilla JavaScript (ES6+)</li>
+                            <li>Modern CSS with Flexbox & Grid</li>
+                            <li>Font Awesome icons</li>
+                            <li>Inter font family</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fas fa-lock"></i> Security</h3>
+                        <ul>
+                            <li>JWT token expiration</li>
+                            <li>Password strength validation</li>
+                            <li>Input sanitization</li>
+                            <li>CORS protection</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fas fa-mobile-alt"></i> UX Features</h3>
+                        <ul>
+                            <li>Password visibility toggle</li>
+                            <li>Real-time password strength</li>
+                            <li>Toast notifications</li>
+                            <li>Loading states</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-section">
+                <h2><i class="fas fa-rocket"></i> Get Started</h2>
+                <div class="cta-buttons">
+                    <a href="/" class="cta-btn primary">
+                        <i class="fas fa-play"></i>
+                        Try the Demo
+                    </a>
+                    <a href="https://github.com" class="cta-btn secondary">
+                        <i class="fab fa-github"></i>
+                        View Source
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

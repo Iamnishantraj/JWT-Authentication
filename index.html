@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Authentication Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <h1>JWT Auth Demo</h1>
+                </div>
+                <a href="/demo.html" class="demo-link" style="color: #667eea; text-decoration: none; font-weight: 500;">
+                    <i class="fas fa-info-circle"></i> Features
+                </a>
+                <nav class="nav">
+                    <button id="loginBtn" class="nav-btn active">Login</button>
+                    <button id="registerBtn" class="nav-btn">Register</button>
+                    <button id="dashboardBtn" class="nav-btn" style="display: none;">Dashboard</button>
+                    <button id="logoutBtn" class="nav-btn logout-btn" style="display: none;">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form">
+                <div class="form-container">
+                    <div class="form-header">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <h2>Welcome Back</h2>
+                        <p>Sign in to your account to continue</p>
+                    </div>
+                    <form id="loginFormElement">
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="loginEmail" required placeholder="Enter your email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="loginPassword" required placeholder="Enter your password">
+                                <button type="button" class="toggle-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Sign In
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <div class="form-container">
+                    <div class="form-header">
+                        <i class="fas fa-user-plus"></i>
+                        <h2>Create Account</h2>
+                        <p>Join us and start your journey</p>
+                    </div>
+                    <form id="registerFormElement">
+                        <div class="form-group">
+                            <label for="registerUsername">Username</label>
+                            <div class="input-group">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="registerUsername" required placeholder="Choose a username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">Email</label>
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="registerEmail" required placeholder="Enter your email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Password</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="registerPassword" required placeholder="Create a password">
+                                <button type="button" class="toggle-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength">
+                                <div class="strength-bar">
+                                    <div class="strength-fill"></div>
+                                </div>
+                                <span class="strength-text">Password strength</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i>
+                            Create Account
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Dashboard -->
+            <div id="dashboard" class="dashboard" style="display: none;">
+                <div class="dashboard-header">
+                    <h2>Welcome, <span id="userName">User</span>!</h2>
+                    <p>Here's your personalized dashboard</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- User Profile Card -->
+                    <div class="dashboard-card profile-card">
+                        <div class="card-header">
+                            <i class="fas fa-user-circle"></i>
+                            <h3>Profile Information</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="profile-info">
+                                <div class="info-item">
+                                    <span class="label">Username:</span>
+                                    <span id="profileUsername">-</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Email:</span>
+                                    <span id="profileEmail">-</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Member Since:</span>
+                                    <span id="profileCreated">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Card -->
+                    <div class="dashboard-card stats-card">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar"></i>
+                            <h3>Your Stats</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-number" id="totalPosts">15</div>
+                                    <div class="stat-label">Posts</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" id="totalLikes">234</div>
+                                    <div class="stat-label">Likes</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" id="totalComments">89</div>
+                                    <div class="stat-label">Comments</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity Card -->
+                    <div class="dashboard-card activity-card">
+                        <div class="card-header">
+                            <i class="fas fa-clock"></i>
+                            <h3>Recent Activity</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="activity-list" id="activityList">
+                                <!-- Activity items will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Card -->
+                    <div class="dashboard-card settings-card">
+                        <div class="card-header">
+                            <i class="fas fa-cog"></i>
+                            <h3>Settings</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="settings-list">
+                                <div class="setting-item">
+                                    <span>Email Notifications</span>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <span>Push Notifications</span>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <span>Profile Visibility</span>
+                                    <select class="setting-select">
+                                        <option value="public">Public</option>
+                                        <option value="private">Private</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Toast Notifications -->
+        <div id="toastContainer" class="toast-container"></div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
